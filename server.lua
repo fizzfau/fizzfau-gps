@@ -42,14 +42,13 @@ RegisterServerEvent("fizzfau-gps:connectGps")
 AddEventHandler("fizzfau-gps:connectGps", function(_source)
     local src = _source or source
     local player = ESX.GetPlayerFromId(src)
-    local count = player.GetItemByName("gps").count
+    local count = player.getInventoryItem("gps").count
     if count ~= nil and count > 0 then
         Units[player.source] = {
             ped = GetPlayerPed(src),
             job = player.job.name,
             code = Config.Codes[player.identifier],
-            -- name = player.get("firstName").. " " ..player.get("lastName")
-            name = player.PlayerData.firstname.. " " ..player.PlayerData.lastname
+            name = player.get("firstName").. " " ..player.get("lastName")
         }
         TriggerClientEvent("notification", src, Config.Locales["gps_opened"], "inform")
 
